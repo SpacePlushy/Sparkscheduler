@@ -41,34 +41,42 @@ Comprehensive technical documentation is available in the `/docs` directory:
 
 ## 🚀 Quick Start
 
-### Prerequisites
+**Backend API is ready to run!** See [QUICK_START.md](QUICK_START.md) for a 5-minute setup guide.
 
-- Node.js 20+ (LTS)
-- PostgreSQL 15+
-- Redis 7+
-- Python 3.11+ (for ML services)
-- React Native CLI (for mobile development)
-
-### Installation
+### Super Quick Start
 
 ```bash
 # Clone repository
 git clone https://github.com/SpacePlushy/Sparkscheduler.git
 cd Sparkscheduler
 
-# Install dependencies (coming in implementation phase)
-npm install
-
-# Set up environment variables
+# Copy environment file
 cp .env.example .env
-# Edit .env with your configuration
 
-# Run database migrations
-npm run migrate
+# Start all services with Docker
+docker-compose up -d
 
-# Start development servers
-npm run dev
+# Check API health
+curl http://localhost:3000/health
 ```
+
+**That's it!** The backend API is now running on http://localhost:3000
+
+### For Development
+
+```bash
+# Install dependencies
+npm install
+cd backend && npm install && cd ..
+
+# Start infrastructure only
+docker-compose up -d postgres timescaledb redis
+
+# Run backend in dev mode (with hot reload)
+npm run dev:backend
+```
+
+See [DEVELOPMENT.md](DEVELOPMENT.md) for detailed development instructions.
 
 ---
 
