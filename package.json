@@ -1,0 +1,50 @@
+{
+  "name": "spark-scheduler-pro",
+  "version": "1.0.0",
+  "description": "Intelligent scheduling and analytics for Walmart Spark drivers",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "mobile",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:ml\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:ml": "cd ml-service && python -m uvicorn api.main:app --reload --port 8001",
+    "build": "npm run build:backend && npm run build:mobile",
+    "build:backend": "cd backend && npm run build",
+    "build:mobile": "cd mobile && npm run build",
+    "test": "npm run test:backend && npm run test:ml",
+    "test:backend": "cd backend && npm test",
+    "test:ml": "cd ml-service && pytest",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "migrate": "cd backend && npm run migrate",
+    "seed": "cd backend && npm run seed"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.53.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.2.2"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=9.0.0"
+  },
+  "author": "Frank Palmisano",
+  "license": "MIT",
+  "keywords": [
+    "spark",
+    "delivery",
+    "scheduling",
+    "ai",
+    "gig-economy",
+    "walmart"
+  ]
+}
